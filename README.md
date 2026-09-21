@@ -97,4 +97,4 @@ This project stores user preferences and session history locally in the browser 
 
 ## License
 
-This project does not currently include a license file. If you plan to share or distribute it publicly, consider adding an appropriate license such as MIT.
+MIT.
