@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Dark Theme (Default) */
+  --background: #0F172A;
+  --surface: #1E293B;
+  --surface-subtle: #334155;
+  --border: #334155;
+  --primary: #38BDF8;
+  --primary-hover: #0ea5e9;
+  --primary-muted: rgba(56, 189, 248, 0.15);
+  
+  --char-correct: #22C55E;
+  --char-incorrect: #EF4444;
+  --char-incorrect-extra: #F87171;
+  --char-pending: #94A3B8;
+  --char-active: #F8FAFC;
+  
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+  --text-subtle: #64748B;
+}
+
+.light {
+  /* Light Theme */
+  --background: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-subtle: #F1F5F9;
+  --border: #E2E8F0;
+  --primary: #0284C7;
+  --primary-hover: #0369A1;
+  --primary-muted: rgba(2, 132, 199, 0.1);
+  
+  --char-correct: #16A34A;
+  --char-incorrect: #DC2626;
+  --char-incorrect-extra: #EF4444;
+  --char-pending: #64748B;
+  --char-active: #0F172A;
+  
+  --text-main: #0F172A;
+  --text-muted: #475569;
+  --text-subtle: #94A3B8;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-text-main font-sans antialiased min-h-screen transition-colors duration-200;
+  }
+
+  /* Custom smooth scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--surface-subtle);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-subtle);
+  }
+}
+
+/* Caret / Cursor Animations */
+.caret-cursor {
+  position: relative;
+}
+
+.caret-cursor::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10%;
+  height: 80%;
+  width: 2.5px;
+  background-color: var(--primary);
+  border-radius: 2px;
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .caret-cursor::after {
+    animation: none;
+    opacity: 1;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus ring accessibility */
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+}
